@@ -184,8 +184,7 @@ def show_birthday(args, book: AddressBook):
 
 @input_error
 def birthdays(args, book: AddressBook):
-    this_week_info, next_week_info = book.upcoming_birthdays()
-    return f"{this_week_info}\n{next_week_info}"
+    return book.upcoming_birthdays()
 
 
 def parse_input(user_input):
