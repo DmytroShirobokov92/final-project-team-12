@@ -172,6 +172,5 @@ def show_birthday(name, book: AddressBook):
 
 
 @input_error
-def birthdays(book: AddressBook):
-    this_week_info, next_week_info = book.upcoming_birthdays()
-    return f"{this_week_info}\n{next_week_info}"
+def birthdays(args, book: AddressBook):
+    return book.upcoming_birthdays()
