@@ -1,5 +1,4 @@
 from collections import UserDict
-
 from contacts import input_error
 
 
