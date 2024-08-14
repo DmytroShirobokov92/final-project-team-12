@@ -1,6 +1,7 @@
 from collections import UserDict
-from contacts import input_error
-
+from include.address_book.address_book import AddressBook
+from include.contacts_methods import input_error
+import pickle
 
 class NoteBook(UserDict):
     def add_record(self, note_record):
@@ -29,7 +30,7 @@ class NoteBook(UserDict):
         query = input("Enter a keyword or sentence to search for a note: ").strip().lower()
 
         found_notes = [
-            str(note_reчcord) for note_record in self.data.values()
+            str(note_record) for note_record in self.data.values()
             if query in note_record.title.lower() or query in note_record.body.lower()
         ]
 
@@ -71,3 +72,27 @@ def add_note(note_book: NoteBook):
 
     return message
 
+def save_notes(notes, filename="notes.pkl"):
+    with open(filename, "wb") as f:
+        pickle.dump(notes, f)
+
+
+def load_notes(filename="notes.pkl"):
+    try:
+        with open(filename, "rb") as f:
+            return pickle.load(f)
+    except FileNotFoundError:
+        return NoteBook()
+
+
+def save_data(book, filename="addressbook.pkl"):
+    with open(filename, "wb") as f:
+        pickle.dump(book, f)
+
+
+def load_data(filename="addressbook.pkl"):
+    try:
+        with open(filename, "rb") as f:
+            return pickle.load(f)
+    except FileNotFoundError:
+        return AddressBook()
