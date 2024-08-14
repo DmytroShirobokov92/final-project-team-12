@@ -56,6 +56,18 @@ This bot is designed for efficient management of contacts and notes, focusing on
 
 ``F.E. if today 13.08 -- (birthdays 5) return users birthdays list 13.08-18.08 dates in format '13.08': 'foo, bar', '14.08': 'user_3'``
 
+#### Modify or create new note
+```add-note | modify-note```
+
+#### Shows list of all notes
+```all-notes```
+
+#### Search note by anu word on title or body
+```search-note```
+
+#### Remove note by note title
+```remove-note```
+
 #### Exit
 ```close | exit```
 
