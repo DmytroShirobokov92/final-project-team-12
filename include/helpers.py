@@ -1,3 +1,5 @@
+import re
+
 class Field:
     def __init__(self, value):
         self.value = value
@@ -8,3 +10,6 @@ class Field:
 
 class Name(Field):
     pass
+
+def validate(value):
+    return re.fullmatch(r'\d{10}', value) is not None

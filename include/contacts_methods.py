@@ -1,6 +1,6 @@
-import re
-from include.address_book.address_book import AddressBook
-from include.contacts import Record
+
+from .address_book.address_book import AddressBook
+from .contacts import Record
 
 
 def input_error(func):
@@ -97,6 +97,3 @@ def show_birthday(name, book: AddressBook):
 def birthdays(args, book: AddressBook):
     return book.upcoming_birthdays()
 
-
-def validate(value):
-    return re.fullmatch(r'\d{10}', value) is not None

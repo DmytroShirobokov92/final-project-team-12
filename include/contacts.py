@@ -1,9 +1,10 @@
-from include.birthday.birthday import Birthday
-from include.address.address import Address
-from contacts_methods import validate
-from helpers import (
+from .birthday.birthday import Birthday
+from .address.address import Address
+# from .contacts_methods import validate
+from .helpers import (
     Field,
-    Name
+    Name,
+    validate
 )
 
 class Phone(Field):

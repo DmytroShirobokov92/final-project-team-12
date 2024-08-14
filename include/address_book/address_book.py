@@ -1,5 +1,5 @@
 from collections import UserDict
-from include.upcoming_birthdays.upcoming_birthdays import get_upcoming_birthdays
+from ..upcoming_birthdays.upcoming_birthdays import get_upcoming_birthdays
 
 
 class AddressBook(UserDict):
