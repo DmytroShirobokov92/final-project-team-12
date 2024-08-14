@@ -1,5 +1,4 @@
 from collections import UserDict
-from datetime import time
 
 from contacts import input_error
 
@@ -31,7 +30,7 @@ class NoteBook(UserDict):
         query = input("Enter a keyword or sentence to search for a note: ").strip().lower()
 
         found_notes = [
-            str(note_record) for note_record in self.data.values()
+            str(note_reчcord) for note_record in self.data.values()
             if query in note_record.title.lower() or query in note_record.body.lower()
         ]
 
