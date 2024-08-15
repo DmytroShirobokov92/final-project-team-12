@@ -1,42 +1,8 @@
-import pickle
-from contacts import (
-    AddressBook,
-    add_contact,
-    change_phone,
-    show_phone,
-    show_all_contacts,
-    add_birthday,
-    show_birthday,
-    birthdays,
-    delete_contact
-)
-from notes import NoteBook, add_note
+from include.contacts_methods import (add_contact, change_phone, show_phone, show_all_contacts, add_birthday,
+                                      show_birthday, birthdays, delete_contact, add_address)
 
-
-def save_notes(notes, filename="notes.pkl"):
-    with open(filename, "wb") as f:
-        pickle.dump(notes, f)
-
-
-def load_notes(filename="notes.pkl"):
-    try:
-        with open(filename, "rb") as f:
-            return pickle.load(f)
-    except FileNotFoundError:
-        return NoteBook()
-
-
-def save_data(book, filename="addressbook.pkl"):
-    with open(filename, "wb") as f:
-        pickle.dump(book, f)
-
-
-def load_data(filename="addressbook.pkl"):
-    try:
-        with open(filename, "rb") as f:
-            return pickle.load(f)
-    except FileNotFoundError:
-        return AddressBook()
+from include.notes.notes import (
+    add_note, load_data, load_notes, save_data, save_notes)
 
 
 def parse_input(user_input):
@@ -61,41 +27,57 @@ def main():
         elif command == "hello":
             print("How can I help you?")
 
-        elif command == "add":
-            print(add_contact(*args, book))
-
-        elif command == "change":
-            print(change_phone(*args, book))
-
-        elif command == "phone":
-            print(show_phone(*args, book))
-
-        elif command == "all":
+        elif command == "contacts-list":
+            # contacts-list
             print(show_all_contacts(book))
 
-        elif command == "add-birthday":
-            print(add_birthday(*args, book))
-
-        elif command == "show-birthday":
-            print(show_birthday(*args, book))
-
-        elif command == "birthdays":
-            print(birthdays(book))
-
-        elif command == "delete":
+        elif command == "delete-contact":
+            # delete-contact {contact_name}
             print(delete_contact(*args, book))
 
-        elif command == "add-note" or command == "modify-note":
-            print(add_note(*args, notes_book))
+        elif command == "add-contact":
+            # add-contact {contact_name} {contact_phone}
+            print(add_contact(*args, book))
+
+        elif command == "add-address":
+            # add-address {contact_name} {city} {street} {state} {zip_code}
+            print(add_address(args, book))
+
+        elif command == "add-birthday":
+            # add-birthday {contact_name} {contact_birthday format dd.mm.yy}
+            print(add_birthday(*args, book))
+
+        elif command == "change-phone":
+            # change-phone {contact_name} {current_contact_phone} {new_contact_phone}
+            print(change_phone(*args, book))
+
+        elif command == "show-phone":
+            # show-phone {contact_name}
+            print(show_phone(*args, book))
+
+        elif command == "show-birthday":
+            # show-birthday {contact_name}
+            print(show_birthday(*args, book))
 
         elif command == "all-notes":
+            # all-notes
             print(notes_book.show_all_notes())
 
+        elif command == "add-note" or command == "modify-note":
+            # add-note | modify-note
+            print(add_note(*args, notes_book))
+
         elif command == "search-note":
+            # search-note
             print(notes_book.search_notes())
 
         elif command == "remove-note":
+            # remove-note
             print(notes_book.delete())
+
+        elif command == "upcoming-birthdays":
+            # upcoming-birthdays
+            print(birthdays(args, book))
 
         else:
             print("Invalid command.")
