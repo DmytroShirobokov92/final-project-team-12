@@ -43,6 +43,10 @@ This bot is designed for efficient management of contacts and notes, focusing on
 ```.\venv\Scripts\activate```
 #### On macOS/Linux:
 ```source venv/bin/activate```
+#### Create dist:
+
+```python setup.py sdist bdist_wheel```
+
 #### Install the package:
 
 ```pip install --editable .```
