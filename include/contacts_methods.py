@@ -48,11 +48,47 @@ def change_phone(name, old_phone, new_phone, book: AddressBook):
 
 
 @input_error
-def show_phone(name, book: AddressBook):
-    record = book.find(name)
+def show_phone(phone: str, book: AddressBook):
+    pass
+    return
+    record = book.find(phone)
+    if record:
+        phones = ', '.join(p.value for p in record.phones)
+        return f"Phones for {phone}: {phones}"
+    return "Contact not found."
+
+
+@input_error
+def show_address(address: str, book: AddressBook):
+    records = book.find_by_address(address)
+    if len(records):
+        answers = []
+        for rec in records:
+            phones = ', '.join(p.value for p in rec.phones)
+            answers.append(f"Name: {rec.name}, Phones: {phones}, ")
+        return ', '.join(answers)
+
+
+@input_error
+def show_email(email: str, book: AddressBook):
+    pass
+    return
+    record = book.find(address)
     if record:
         phones = ', '.join(p.value for p in record.phones)
         return f"Phones for {name}: {phones}"
+    return "Contact not found."
+
+
+@input_error
+def show_name(name: str, book: AddressBook):
+    records = book.find_by_name(name)
+    if len(records):
+        answers = []
+        for rec in records:
+            phones = ', '.join(p.value for p in rec.phones)
+            answers.append(f"Name: {rec.name}, Phones: {phones}, ")
+        return ', '.join(answers)
     return "Contact not found."
 
 
@@ -96,4 +132,3 @@ def show_birthday(name, book: AddressBook):
 @input_error
 def birthdays(args, book: AddressBook):
     return book.upcoming_birthdays()
-

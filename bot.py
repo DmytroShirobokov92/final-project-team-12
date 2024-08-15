@@ -1,5 +1,5 @@
 from include.contacts_methods import (add_contact, change_phone, show_phone, show_all_contacts, add_birthday,
-                                      show_birthday, birthdays, delete_contact, add_address)
+                                      show_birthday, birthdays, delete_contact, add_address, show_address, show_email, show_name)
 
 from include.notes.notes import (
     add_note, load_data, load_notes, save_data, save_notes)
@@ -37,7 +37,7 @@ def main():
 
         elif command == "add-contact":
             # add-contact {contact_name} {contact_phone}
-            print(add_contact(*args, book))
+            print(add_contact(*args, book=book))
 
         elif command == "add-address":
             # add-address {contact_name} {city} {street} {state} {zip_code}
@@ -54,6 +54,18 @@ def main():
         elif command == "show-phone":
             # show-phone {contact_name}
             print(show_phone(*args, book))
+
+        elif command in ["show-address", "find-address"]:
+            # show-phone {contact_name}
+            print(show_address(*args, book))
+
+        elif command == "show-email":
+            # show-phone {contact_name}
+            print(show_email(*args, book))
+
+        elif command in ["show-name", "find-name"]:
+            # show-phone {contact_name}
+            print(show_name(*args, book))
 
         elif command == "show-birthday":
             # show-birthday {contact_name}
