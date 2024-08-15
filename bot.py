@@ -10,6 +10,20 @@ from contacts import (
     birthdays,
     delete_contact
 )
+from notes import NoteBook, add_note
+
+
+def save_notes(notes, filename="notes.pkl"):
+    with open(filename, "wb") as f:
+        pickle.dump(notes, f)
+
+
+def load_notes(filename="notes.pkl"):
+    try:
+        with open(filename, "rb") as f:
+            return pickle.load(f)
+    except FileNotFoundError:
+        return NoteBook()
 
 
 def save_data(book, filename="addressbook.pkl"):
@@ -31,6 +45,7 @@ def parse_input(user_input):
 
 def main():
     book = load_data()
+    notes_book = load_notes()
     print("Welcome to the assistant bot!")
 
     while True:
@@ -39,6 +54,7 @@ def main():
 
         if command in ["close", "exit"]:
             save_data(book)
+            save_notes(notes_book)
             print("Good bye!")
             break
 
@@ -68,6 +84,18 @@ def main():
 
         elif command == "delete":
             print(delete_contact(*args, book))
+
+        elif command == "add-note" or command == "modify-note":
+            print(add_note(*args, notes_book))
+
+        elif command == "all-notes":
+            print(notes_book.show_all_notes())
+
+        elif command == "search-note":
+            print(notes_book.search_notes())
+
+        elif command == "remove-note":
+            print(notes_book.delete())
 
         else:
             print("Invalid command.")
