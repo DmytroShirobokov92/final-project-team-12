@@ -28,6 +28,32 @@ This bot is designed for efficient management of contacts and notes, focusing on
 #### HTTPS
 ``git clone https://github.com/DmytroShirobokov92/final-project-team-12.git``
 
+## Installing the package
+### Navigate to the project directory:
+
+```cd final-project-team-12```
+
+### Create a virtual environment:
+
+```python -m venv venv```
+
+### Activate the virtual environment:
+
+#### On Windows:
+```.\venv\Scripts\activate```
+#### On macOS/Linux:
+```source venv/bin/activate```
+#### Install the package:
+
+```pip install --editable .```
+
+#### The --editable flag allows you to install the package in development mode, so any changes you make to the code will be immediately reflected.
+
+### Running the bot
+To start the bot, use the following command:
+
+```python -m bot```
+
 ## Bot commands description
 
 #### Start bot
