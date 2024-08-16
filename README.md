@@ -60,20 +60,26 @@ To start the bot, use the following command:
 
 #### IMPORTANT Setup path for project
 `` EXAMPLE: how to set correct path for project, mark main folder as Source Root, Resourse Root and Namespace package using PyCharm``
-![img.png](img.png)``git clone https://github.com/DmytroShirobokov92/final-project-team-12.git``
+![img.png](img.png)
 
 ## Bot commands description
 
 #### Start bot
 ```hello```
 
-#### Add new contact 
-```ДОПОЛНИТЬ ПОСЛЕ ЗАВЕРШЕНИЯ ЗАДАЧИ ДОБАВЛЕНИЯ ЮЗЕРА.```
+#### Add new contact with phone
+```add-contact {user_name} {user_phone}```
 
-#### Change contact info
-```ДОПОЛНИТЬ ПОСЛЕ ЗАВЕРШЕНИЯ ЗАДАЧИ ДОБАВЛЕНИЯ ЮЗЕРА.```
+#### Add contact email 
+```add-email {user_email}```
 
-#### Show user phone
+#### Add contact address 
+```add-email {city} {street} {house num} {flat num}```
+
+#### Add contact birthday
+```add-birthday {user_name} {birthday_date}```
+
+#### Show contact phone
 ```phone {user_name}```
 
 #### Find users by email
@@ -101,7 +107,7 @@ To start the bot, use the following command:
 ```show-birthday {user_name}```
 
 #### Show upcoming users birthdays related days ahead 
-```birthdays {days_related}```
+```birthdays```
 
 ``F.E. if today 13.08 -- (birthdays 5) return users birthdays list 13.08-18.08 dates in format '13.08': 'foo, bar', '14.08': 'user_3'``
 
