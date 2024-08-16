@@ -82,7 +82,19 @@ def add_address(args, book: AddressBook):
         return "Address added."
     return "Contact not found."
 
+@input_error  
+def add_email(args, book: AddressBook):
+    name, email = args  
+    record = book.find(name)
 
+    if record is None:
+        return "Contact not found."
+
+    record.add_email(email)  
+    return f"Email '{email}' added to contact '{name}'."
+
+def parse_input(user_input):
+    return user_input.strip().split()
 @input_error
 def show_birthday(name, book: AddressBook):
     record = book.find(name)

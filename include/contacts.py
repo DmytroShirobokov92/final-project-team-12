@@ -1,5 +1,6 @@
 from .birthday.birthday import Birthday
 from .address.address import Address
+from .email.email import Email
 # from .contacts_methods import validate
 from .helpers import (
     Field,
@@ -20,6 +21,7 @@ class Record:
         self.phones = []
         self.birthday = None
         self.address = None
+        self.emails = []
 
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
@@ -45,9 +47,27 @@ class Record:
     def add_address(self, city, street, house_number, apartment=None):
         self.address = Address(city, street, house_number, apartment)
 
+    def add_email(self, email):
+        self.emails.append(Email(email))
+     
+
+    def remove_email(self, email):
+        email_obj = Email(email)   
+        self.emails = [e for e in self.emails if e.value != email_obj.value]    
+
     def __str__(self):
         phone_str = '; '.join(p.value for p in self.phones)
-        address_str = f", address: {self.address}" if self.address else ""
-        birthday_str = f", birthday: {self.birthday}" if self.birthday else ""
-        return f"Contact name: {self.name.value}, phones: {phone_str}{birthday_str}{address_str}"
+        email_str = '; '.join(e.value for e in self.emails)
+        birthday_str = self.birthday if self.birthday else "N/A"
+        address_str = self.address if self.address else "N/A"
+
+        table_format = (
+            f"{'Contact Name':<20} | {self.name.value}\n"
+            f"{'Phones':<20} | {phone_str}\n"
+            f"{'Emails':<20} | {email_str}\n"
+            f"{'Birthday':<20} | {birthday_str}\n"
+            f"{'Address':<20} | {address_str}"
+        )
+    
+        return table_format
 
