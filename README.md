@@ -28,6 +28,10 @@ This bot is designed for efficient management of contacts and notes, focusing on
 #### HTTPS
 ``git clone https://github.com/DmytroShirobokov92/final-project-team-12.git``
 
+#### IMPORTANT Setup path for project
+`` EXAMPLE: how to set correct path for project, markd main folder as Source Root, Resourse Root and Namespace package using PyCharm``
+![img.png](img.png)``git clone https://github.com/DmytroShirobokov92/final-project-team-12.git``
+
 ## Bot commands description
 
 #### Start bot
