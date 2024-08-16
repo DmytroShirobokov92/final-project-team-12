@@ -8,6 +8,7 @@ from .helpers import (
     validate
 )
 
+
 class Phone(Field):
     def __init__(self, value):
         if not validate(value):
@@ -16,12 +17,12 @@ class Phone(Field):
 
 
 class Record:
-    def __init__(self, name):
+    def __init__(self, name: str):
         self.name = Name(name)
-        self.phones = []
-        self.birthday = None
-        self.address = None
-        self.emails = []
+        self.phones: list[Record] = []
+        self.birthday: Birthday = None
+        self.address: Address = None
+        self.emails: list[Email] = []
 
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
@@ -49,11 +50,10 @@ class Record:
 
     def add_email(self, email):
         self.emails.append(Email(email))
-     
 
     def remove_email(self, email):
-        email_obj = Email(email)   
-        self.emails = [e for e in self.emails if e.value != email_obj.value]    
+        email_obj = Email(email)
+        self.emails = [e for e in self.emails if e.value != email_obj.value]
 
     def __str__(self):
         phone_str = '; '.join(p.value for p in self.phones)
@@ -68,6 +68,5 @@ class Record:
             f"{'Birthday':<20} | {birthday_str}\n"
             f"{'Address':<20} | {address_str}"
         )
-    
-        return table_format
 
+        return table_format
