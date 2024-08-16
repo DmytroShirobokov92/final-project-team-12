@@ -1,5 +1,5 @@
 from include.contacts_methods import (add_contact, change_phone, show_phone, show_all_contacts, add_birthday,
-                                      show_birthday, birthdays, delete_contact, add_address)
+                                      show_birthday, birthdays, delete_contact, add_address, add_email)
 
 from include.notes.notes import (
     add_note, load_data, load_notes, save_data, save_notes)
@@ -78,6 +78,9 @@ def main():
         elif command == "upcoming-birthdays":
             # upcoming-birthdays
             print(birthdays(args, book))
+
+        elif command == "add-email":
+              print(add_email(args, book))    
 
         else:
             print("Invalid command.")
