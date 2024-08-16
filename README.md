@@ -28,38 +28,68 @@ This bot is designed for efficient management of contacts and notes, focusing on
 #### HTTPS
 ``git clone https://github.com/DmytroShirobokov92/final-project-team-12.git``
 
+## Installing the package
+### Navigate to the project directory:
+
+```cd final-project-team-12```
+
+### Create a virtual environment:
+
+```python -m venv venv```
+
+### Activate the virtual environment:
+
+#### On Windows:
+```.\venv\Scripts\activate```
+#### On macOS/Linux:
+```source venv/bin/activate```
+#### Create dist:
+
+```python setup.py sdist bdist_wheel```
+
+#### Install the package:
+
+```pip install --editable .```
+
+#### The --editable flag allows you to install the package in development mode, so any changes you make to the code will be immediately reflected.
+
+### Running the bot
+To start the bot, use the following command:
+
+```python -m bot```
+
 #### IMPORTANT Setup path for project
 `` EXAMPLE: how to set correct path for project, mark main folder as Source Root, Resourse Root and Namespace package using PyCharm``
-![img.png](img.png)``git clone https://github.com/DmytroShirobokov92/final-project-team-12.git``
+![img.png](img.png)
 
 ## Bot commands description
 
 #### Start bot
 ```hello```
 
-#### Add new contact 
-```ДОПОЛНИТИ ПІСЛЯ ЗАВЕРШЕННЯ ЗАВДАННЯ ДОДАВЛЕННЯ ЮЗЕРА.```
+#### Add new contact with phone
+```add-contact {user_name} {user_phone}```
 
-#### Change contact info
-```ДОПОЛНИТИ ПІСЛЯ ЗАВЕРШЕННЯ ЗАВДАННЯ ДОДАВЛЕННЯ ЮЗЕРА.```
+#### Add contact email 
+```add-email {user_email}```
 
-#### Show user phone
-```phone {user_name}```
+#### Add contact address 
+```add-address {city} {street} {house num} {flat num}```
 
 #### Find users by email
-```"show-phone", "find-phone" {part or full value to search}```
+```"show-phone" | "find-phone" {part or full value to search}```
 
 #### Find users by name
-```"show-name", "find-name" {part or full value to search}```
+```"show-name" | "find-name" {part or full value to search}```
 
 #### Find users by address
-```"show-address", "find-address" {part or full value to search}```
+```"show-address" | "find-address" {part or full value to search}```
 
 #### Find users by email
-```"show-email", "find-email" {part or full value to search}```
+```"show-email" | "find-email" {part or full value to search}```
 
-#### Find users by any valie: name, email, address, email
-```"show", "find" {part or full value to search}```
+#### Find users by any value: name, email, address, email
+```"show" | "find" {part or full value to search}```
 
 #### Show all users list
 ```all | contacts-list```
@@ -71,7 +101,7 @@ This bot is designed for efficient management of contacts and notes, focusing on
 ```show-birthday {user_name}```
 
 #### Show upcoming users birthdays related days ahead 
-```birthdays {days_related}```
+```upcoming-birthdays```
 
 ``F.E. if today 13.08 -- (birthdays 5) return users birthdays list 13.08-18.08 dates in format '13.08': 'foo, bar', '14.08': 'user_3'``
 

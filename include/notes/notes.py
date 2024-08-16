@@ -1,24 +1,25 @@
+from __future__ import annotations
 from collections import UserDict
 from include.address_book.address_book import AddressBook
 from include.contacts_methods import input_error
 import pickle
 
 
-class NoteBook(UserDict):
-    def add_record(self, note_record):
+class NoteBook(UserDict[str, "NoteRecord"]):
+    def add_record(self, note_record: NoteRecord):
         self.data[note_record.title] = note_record
 
-    def find(self, title):
+    def find(self, title: str) -> NoteRecord:
         return self.data.get(title)
 
-    def delete(self):
+    def delete(self) -> str:
         title = input("Enter the title of the note to delete: ").strip()
         if title in self.data:
             del self.data[title]
             return f"Note titled '{title}' has been deleted."
         return f"Note titled '{title}' not found."
 
-    def show_all_notes(self):
+    def show_all_notes(self) -> str:
         if not self.data:
             return "No notes available."
 
@@ -27,7 +28,7 @@ class NoteBook(UserDict):
             all_notes += str(note_record) + "\n"
         return all_notes
 
-    def search_notes(self):
+    def search_notes(self) -> str:
         query = input(
             "Enter a keyword or sentence to search for a note: ").strip().lower()
 
@@ -43,22 +44,22 @@ class NoteBook(UserDict):
 
 
 class NoteRecord:
-    def __init__(self, title, body):
+    def __init__(self, title: str, body: str):
         self.title = title
         self.body = body
 
-    def update_title(self, title):
+    def update_title(self, title: str) -> None:
         self.title = title
 
-    def update_body(self, body):
+    def update_body(self, body: str) -> None:
         self.body = body
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Title: {self.title} \nNote Body: {self.body} \n"
 
 
 @input_error
-def add_note(note_book: NoteBook):
+def add_note(note_book: NoteBook) -> str:
     title = input("Enter the note title: ")
     body = input("Enter the note body: ")
 
@@ -75,12 +76,12 @@ def add_note(note_book: NoteBook):
     return message
 
 
-def save_notes(notes, filename="notes.pkl"):
+def save_notes(notes, filename="notes.pkl") -> None:
     with open(filename, "wb") as f:
         pickle.dump(notes, f)
 
 
-def load_notes(filename="notes.pkl"):
+def load_notes(filename="notes.pkl") -> NoteBook:
     try:
         with open(filename, "rb") as f:
             return pickle.load(f)
@@ -88,12 +89,12 @@ def load_notes(filename="notes.pkl"):
         return NoteBook()
 
 
-def save_data(book, filename="addressbook.pkl"):
+def save_data(book, filename="addressbook.pkl") -> None:
     with open(filename, "wb") as f:
         pickle.dump(book, f)
 
 
-def load_data(filename="addressbook.pkl"):
+def load_data(filename="addressbook.pkl") -> AddressBook:
     try:
         with open(filename, "rb") as f:
             return pickle.load(f)

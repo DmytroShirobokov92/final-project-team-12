@@ -54,9 +54,10 @@ class AddressBook(UserDict[str, Record]):
 
         return [record for record in result]
 
-    def delete(self, name):
+    # delete exist record
+    def delete(self, name: str) -> None:
         if name in self.data:
             del self.data[name]
 
-    def upcoming_birthdays(self):
+    def upcoming_birthdays(self) -> str:
         return get_upcoming_birthdays(self)

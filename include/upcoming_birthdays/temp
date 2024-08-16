@@ -1,18 +1,13 @@
-from __future__ import annotations
 from datetime import datetime, timedelta
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from ..address_book.address_book import AddressBook
 
 
-def get_upcoming_birthdays(address_book: AddressBook) -> str:
+def get_upcoming_birthdays(address_book):
     today = datetime.today().date()
 
     days_ahead = int(input("Input number of days ahead: "))
     end_date = today + timedelta(days=days_ahead)
 
-    upcoming_birthdays: dict[str, str] = {}
+    upcoming_birthdays = {}
 
     for user in address_book.data.values():
         if user.birthday:
@@ -30,7 +25,7 @@ def get_upcoming_birthdays(address_book: AddressBook) -> str:
     if not upcoming_birthdays:
         return "There are no birthdays in the selected period."
 
-    result: list[str] = []
+    result = []
     for date, names in upcoming_birthdays.items():
         result.append(f"{date}: {names}")
     return "\n".join(result)
