@@ -2,7 +2,7 @@ import re
 
 
 class Address:
-    def __init__(self, city, street, house_number, apartment=None):
+    def __init__(self, city: str, street: str, house_number: int, apartment: int = None):
         self.city = validate_city(city)
         self.street = validate_street(street)
         self.house_number = validate_house_number(house_number)
@@ -14,7 +14,7 @@ class Address:
         return f"{self.city}, {self.street}, {self.house_number}"
 
 
-def validate_city(city):
+def validate_city(city: str):
     if not re.match(r'^[A-Za-zА-Яа-я\s]+$', city):
         raise ValueError("City must contain only letters and spaces.")
     if not city.strip():
@@ -22,7 +22,7 @@ def validate_city(city):
     return city
 
 
-def validate_street(street):
+def validate_street(street: str):
     if not re.match(r'^[A-Za-zА-Яа-я\s]+$', street):
         raise ValueError("Street must contain only letters and spaces.")
     if not street.strip():
@@ -30,13 +30,13 @@ def validate_street(street):
     return street
 
 
-def validate_house_number(house_number):
+def validate_house_number(house_number: int):
     if not re.match(r'^\d+$', house_number):
         raise ValueError("House number must be a positive integer.")
     return house_number
 
 
-def validate_apartment(apartment):
+def validate_apartment(apartment: int):
     if apartment and not re.match(r'^\d+$', apartment):
         raise ValueError("Apartment number must be a positive integer.")
     return apartment
