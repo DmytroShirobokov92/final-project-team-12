@@ -58,6 +58,10 @@ To start the bot, use the following command:
 
 ```python -m bot```
 
+#### IMPORTANT Setup path for project
+`` EXAMPLE: how to set correct path for project, mark main folder as Source Root, Resourse Root and Namespace package using PyCharm``
+![img.png](img.png)``git clone https://github.com/DmytroShirobokov92/final-project-team-12.git``
+
 ## Bot commands description
 
 #### Start bot
@@ -72,8 +76,23 @@ To start the bot, use the following command:
 #### Show user phone
 ```phone {user_name}```
 
+#### Find users by email
+```"show-phone", "find-phone" {part or full value to search}```
+
+#### Find users by name
+```"show-name", "find-name" {part or full value to search}```
+
+#### Find users by address
+```"show-address", "find-address" {part or full value to search}```
+
+#### Find users by email
+```"show-email", "find-email" {part or full value to search}```
+
+#### Find users by any valie: name, email, address, email
+```"show", "find" {part or full value to search}```
+
 #### Show all users list
-```all```
+```all | contacts-list```
 
 #### Add birthday to user
 ```add-birthday {user_name} {birthday_date}```
