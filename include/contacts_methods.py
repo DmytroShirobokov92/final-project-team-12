@@ -48,13 +48,14 @@ def change_phone(name, old_phone, new_phone, book: AddressBook):
 
 
 @input_error
-def show_phone(phone: str, book: AddressBook):
-    pass
-    return
-    record = book.find(phone)
-    if record:
-        phones = ', '.join(p.value for p in record.phones)
-        return f"Phones for {phone}: {phones}"
+def show_phone(phone: int, book: AddressBook):
+    records = book.find_by_phone(phone)
+    if len(records):
+        answers = []
+        for rec in records:
+            phones = ', '.join(p.value for p in rec.phones)
+            answers.append(f"Name: {rec.name}, Phones: {phones}, ")
+        return ', '.join(answers)
     return "Contact not found."
 
 
@@ -67,16 +68,18 @@ def show_address(address: str, book: AddressBook):
             phones = ', '.join(p.value for p in rec.phones)
             answers.append(f"Name: {rec.name}, Phones: {phones}, ")
         return ', '.join(answers)
+    return "Contact not found."
 
 
 @input_error
 def show_email(email: str, book: AddressBook):
-    pass
-    return
-    record = book.find(address)
-    if record:
-        phones = ', '.join(p.value for p in record.phones)
-        return f"Phones for {name}: {phones}"
+    records = book.show_email(email)
+    if len(records):
+        answers = []
+        for rec in records:
+            phones = ', '.join(p.value for p in rec.phones)
+            answers.append(f"Name: {rec.name}, Phones: {phones}, ")
+        return ', '.join(answers)
     return "Contact not found."
 
 

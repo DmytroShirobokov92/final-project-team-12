@@ -7,6 +7,7 @@ from .helpers import (
     validate
 )
 
+
 class Phone(Field):
     def __init__(self, value):
         if not validate(value):
@@ -17,9 +18,9 @@ class Phone(Field):
 class Record:
     def __init__(self, name):
         self.name = Name(name)
-        self.phones = []
-        self.birthday = None
-        self.address = None
+        self.phones: list[Record] = []
+        self.birthday: Birthday = None
+        self.address: Address = None
 
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
@@ -50,4 +51,3 @@ class Record:
         address_str = f", address: {self.address}" if self.address else ""
         birthday_str = f", birthday: {self.birthday}" if self.birthday else ""
         return f"Contact name: {self.name.value}, phones: {phone_str}{birthday_str}{address_str}"
-

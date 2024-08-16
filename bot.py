@@ -51,7 +51,7 @@ def main():
             # change-phone {contact_name} {current_contact_phone} {new_contact_phone}
             print(change_phone(*args, book))
 
-        elif command == "show-phone":
+        elif command in ["show-phone", "find-phone"]:
             # show-phone {contact_name}
             print(show_phone(*args, book))
 
@@ -59,7 +59,7 @@ def main():
             # show-phone {contact_name}
             print(show_address(*args, book))
 
-        elif command == "show-email":
+        elif command in ["show-email", "find-email"]:
             # show-phone {contact_name}
             print(show_email(*args, book))
 
