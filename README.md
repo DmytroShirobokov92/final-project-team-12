@@ -37,13 +37,19 @@ This bot is designed for efficient management of contacts and notes, focusing on
 #### Start bot
 ```hello```
 
-#### Add new contact 
-```ДОПОЛНИТИ ПІСЛЯ ЗАВЕРШЕННЯ ЗАВДАННЯ ДОДАВЛЕННЯ ЮЗЕРА.```
+#### Add new contact with phone
+```add-contact {user_name} {user_phone}```
 
-#### Change contact info
-```ДОПОЛНИТИ ПІСЛЯ ЗАВЕРШЕННЯ ЗАВДАННЯ ДОДАВЛЕННЯ ЮЗЕРА.```
+#### Add contact email 
+```add-email {user_email}```
 
-#### Show user phone
+#### Add contact address 
+```add-email {city} {street} {house num} {flat num}```
+
+#### Add contact birthday
+```add-birthday {user_name} {birthday_date}```
+
+#### Show contact phone
 ```phone {user_name}```
 
 #### Find users by email
@@ -64,14 +70,11 @@ This bot is designed for efficient management of contacts and notes, focusing on
 #### Show all users list
 ```all | contacts-list```
 
-#### Add birthday to user
-```add-birthday {user_name} {birthday_date}```
-
 #### Show user birthday date
 ```show-birthday {user_name}```
 
 #### Show upcoming users birthdays related days ahead 
-```birthdays {days_related}```
+```birthdays```
 
 ``F.E. if today 13.08 -- (birthdays 5) return users birthdays list 13.08-18.08 dates in format '13.08': 'foo, bar', '14.08': 'user_3'``
 
