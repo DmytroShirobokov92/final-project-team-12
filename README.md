@@ -30,7 +30,7 @@ This bot is designed for efficient management of contacts and notes, focusing on
 
 #### IMPORTANT Setup path for project
 `` EXAMPLE: how to set correct path for project, mark main folder as Source Root, Resourse Root and Namespace package using PyCharm``
-![img.png](img.png)``git clone https://github.com/DmytroShirobokov92/final-project-team-12.git``
+![img.png](img.png)
 
 ## Bot commands description
 
