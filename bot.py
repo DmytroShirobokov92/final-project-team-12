@@ -1,5 +1,5 @@
-from include.contacts_methods import (add_contact, change_phone, show_phone, show_all_contacts, add_birthday,
-                                      show_birthday, birthdays, delete_contact, add_address, show_address, show_email, show_name)
+from include.contacts_methods import (add_contact, change_phone, show_phone, show_all_contacts, add_birthday, add_email,
+                                      show_address, show_email, show_name, show_any_matches, show_birthday, birthdays, delete_contact, add_address)
 
 from include.notes.notes import (
     add_note, load_data, load_notes, save_data, save_notes)
@@ -27,7 +27,7 @@ def main():
         elif command == "hello":
             print("How can I help you?")
 
-        elif command == "contacts-list":
+        elif command in ["contacts-list", "all"]:
             # contacts-list
             print(show_all_contacts(book))
 
@@ -52,20 +52,24 @@ def main():
             print(change_phone(*args, book))
 
         elif command in ["show-phone", "find-phone"]:
-            # show-phone {contact_name}
+            # show-phone {contact_phone}
             print(show_phone(*args, book))
 
         elif command in ["show-address", "find-address"]:
-            # show-phone {contact_name}
+            # show-phone {contact_address}
             print(show_address(*args, book))
 
         elif command in ["show-email", "find-email"]:
-            # show-phone {contact_name}
+            # show-phone {contact_email}
             print(show_email(*args, book))
 
         elif command in ["show-name", "find-name"]:
             # show-phone {contact_name}
             print(show_name(*args, book))
+
+        elif command in ["show", "find"]:
+            # show-phone {contact_any_value}
+            print(show_any_matches(*args, book))
 
         elif command == "show-birthday":
             # show-birthday {contact_name}
@@ -90,6 +94,9 @@ def main():
         elif command == "upcoming-birthdays":
             # upcoming-birthdays
             print(birthdays(args, book))
+
+        elif command == "add-email":
+            print(add_email(args, book))
 
         else:
             print("Invalid command.")

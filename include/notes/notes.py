@@ -96,7 +96,6 @@ def save_data(book, filename="addressbook.pkl"):
 def load_data(filename="addressbook.pkl"):
     try:
         with open(filename, "rb") as f:
-            print("file was found")
             return pickle.load(f)
     except FileNotFoundError:
         print("file not found")

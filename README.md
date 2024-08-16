@@ -34,16 +34,31 @@ This bot is designed for efficient management of contacts and notes, focusing on
 ```hello```
 
 #### Add new contact 
-```ДОПОЛНИТЬ ПОСЛЕ ЗАВЕРШЕНИЯ ЗАДАЧИ ДОБАВЛЕНИЯ ЮЗЕРА.```
+```ДОПОЛНИТИ ПІСЛЯ ЗАВЕРШЕННЯ ЗАВДАННЯ ДОДАВЛЕННЯ ЮЗЕРА.```
 
 #### Change contact info
-```ДОПОЛНИТЬ ПОСЛЕ ЗАВЕРШЕНИЯ ЗАДАЧИ ДОБАВЛЕНИЯ ЮЗЕРА.```
+```ДОПОЛНИТИ ПІСЛЯ ЗАВЕРШЕННЯ ЗАВДАННЯ ДОДАВЛЕННЯ ЮЗЕРА.```
 
 #### Show user phone
 ```phone {user_name}```
 
+#### Find users by email
+```"show-phone", "find-phone" {part or full value to search}```
+
+#### Find users by name
+```"show-name", "find-name" {part or full value to search}```
+
+#### Find users by address
+```"show-address", "find-address" {part or full value to search}```
+
+#### Find users by email
+```"show-email", "find-email" {part or full value to search}```
+
+#### Find users by any valie: name, email, address, email
+```"show", "find" {part or full value to search}```
+
 #### Show all users list
-```all```
+```all | contacts-list```
 
 #### Add birthday to user
 ```add-birthday {user_name} {birthday_date}```

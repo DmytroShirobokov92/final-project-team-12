@@ -17,9 +17,15 @@ class AddressBook(UserDict[str, Record]):
         ).find(name.upper()) != -1, self.data.values())
         return [record for record in result]
 
-    def find_by_email(self, email: str) -> list[Record]:
-        result: list[Record] = filter(lambda rec: rec.email.value.upper(
-        ).find(email.upper()) != -1, self.data.values())
+    def find_by_email(self, email_to_find: str) -> list[Record]:
+        result: list[Record] = []
+
+        for record in self.data.values():
+            for email in record.emails:
+                if str(email).find(email_to_find) != -1:
+                    result.append(record)
+                    break
+
         return [record for record in result]
 
     # find by phone and parctially match
