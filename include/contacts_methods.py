@@ -2,6 +2,8 @@
 from .address_book.address_book import AddressBook
 from .contacts import Record
 from collections.abc import Callable
+from colorama import Fore, Style
+from .color_console.color_console import error_answer
 
 
 def input_error(func: Callable) -> Callable:
@@ -9,11 +11,11 @@ def input_error(func: Callable) -> Callable:
         try:
             return func(*args, **kwargs)
         except ValueError as e:
-            return str(e)
+            return error_answer(str(e))
         except IndexError:
-            return "Insufficient arguments provided."
+            return error_answer("Insufficient arguments provided.")
         except Exception as e:
-            return str(e)
+            return error_answer(str(e))
 
     return wrapper
 
