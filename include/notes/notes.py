@@ -2,10 +2,10 @@ from __future__ import annotations
 from collections import UserDict
 from include.address_book.address_book import AddressBook
 from include.contacts_methods import input_error
-import pickle
 from ..color_console.color_console import colored_input
 
 
+# class to store and edit records
 class NoteBook(UserDict[str, "NoteRecord"]):
     def add_record(self, note_record: NoteRecord):
         self.data[note_record.title] = note_record
@@ -45,6 +45,7 @@ class NoteBook(UserDict[str, "NoteRecord"]):
         return "\n".join(found_notes)
 
 
+# class to store and edit notes
 class NoteRecord:
     def __init__(self, title: str, body: str):
         self.title = title
@@ -76,30 +77,3 @@ def add_note(note_book: NoteBook) -> str:
         record.update_body(body)
 
     return message
-
-
-def save_notes(notes, filename="notes.pkl") -> None:
-    with open(filename, "wb") as f:
-        pickle.dump(notes, f)
-
-
-def load_notes(filename="notes.pkl") -> NoteBook:
-    try:
-        with open(filename, "rb") as f:
-            return pickle.load(f)
-    except FileNotFoundError:
-        return NoteBook()
-
-
-def save_data(book, filename="addressbook.pkl") -> None:
-    with open(filename, "wb") as f:
-        pickle.dump(book, f)
-
-
-def load_data(filename="addressbook.pkl") -> AddressBook:
-    try:
-        with open(filename, "rb") as f:
-            return pickle.load(f)
-    except FileNotFoundError:
-        print("file not found")
-        return AddressBook()

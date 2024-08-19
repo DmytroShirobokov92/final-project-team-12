@@ -8,6 +8,7 @@ from .helpers import (
 )
 
 
+# class for store phone number
 class Phone(Field):
     def __init__(self, value: str):
         if not validate(value):
@@ -15,6 +16,7 @@ class Phone(Field):
         super().__init__(value)
 
 
+# class for store and edit records
 class Record:
     def __init__(self, name: str):
         self.name = Name(name)

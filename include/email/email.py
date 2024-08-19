@@ -8,5 +8,5 @@ class Email(Field):
             raise ValueError("Invalid email format.")
         super().__init__(value)
 
-    def validate(self, value) -> re.Match[str] | None:
+    def validate(self, value) -> bool:
         return re.fullmatch(r'[^@]+@[^@]+\.[^@]+', value) is not None

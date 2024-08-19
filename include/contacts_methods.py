@@ -2,8 +2,8 @@
 from .address_book.address_book import AddressBook
 from .contacts import Record
 from collections.abc import Callable
-from colorama import Fore, Style
 from .color_console.color_console import error_answer
+import re
 
 
 def input_error(func: Callable) -> Callable:
@@ -14,6 +14,13 @@ def input_error(func: Callable) -> Callable:
             return error_answer(str(e))
         except IndexError:
             return error_answer("Insufficient arguments provided.")
+        except TypeError as e:
+            error_message = str(e)
+            missing_args = re.findall(r"'(\w+)'", error_message)
+            if missing_args:
+                return error_answer(f"Please fill-in missing values - {', '.join(missing_args)}")
+            else:
+                error_answer(str(e))
         except Exception as e:
             return error_answer(str(e))
 
