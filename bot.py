@@ -2,20 +2,27 @@ from include.contacts_methods import (add_contact, change_phone, show_phone, sho
                                       show_address, show_email, show_name, show_any_matches, show_birthday, birthdays, delete_contact, add_address)
 
 from include.notes.notes import (
-    add_note, load_data, load_notes, save_data, save_notes)
+    add_note)
+
+from include.database.database import (
+    load_data, load_notes, save_data, save_notes)
 
 from include.color_console.color_console import print_valid, print_error, colored_input
 
 
+# split user's input to a list of values
 def parse_input(user_input: str) -> list[str]:
     return user_input.strip().split()
 
 
 def main() -> None:
+    # load exits or create new data
     book = load_data()
     notes_book = load_notes()
+
     print_valid("Welcome to the assistant bot!")
 
+    # loop the boot
     while True:
         user_input = colored_input("Enter a command: ")
         command, *args = parse_input(user_input)

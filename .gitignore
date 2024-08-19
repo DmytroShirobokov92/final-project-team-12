@@ -162,4 +162,3 @@ cython_debug/
 .idea/
 /notes.pkl
 /addressbook.pkl
-/requirements.txt
