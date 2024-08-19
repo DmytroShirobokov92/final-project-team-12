@@ -74,28 +74,22 @@ To start the bot, use the following command:
 ```add-email {user_email}```
 
 #### Add contact address 
-```add-email {city} {street} {house num} {flat num}```
-
-#### Add contact birthday
-```add-birthday {user_name} {birthday_date}```
-
-#### Show contact phone
-```phone {user_name}```
+```add-address {city} {street} {house num} {flat num}```
 
 #### Find users by email
-```"show-phone", "find-phone" {part or full value to search}```
+```"show-phone" | "find-phone" {part or full value to search}```
 
 #### Find users by name
-```"show-name", "find-name" {part or full value to search}```
+```"show-name" | "find-name" {part or full value to search}```
 
 #### Find users by address
-```"show-address", "find-address" {part or full value to search}```
+```"show-address" | "find-address" {part or full value to search}```
 
 #### Find users by email
-```"show-email", "find-email" {part or full value to search}```
+```"show-email" | "find-email" {part or full value to search}```
 
-#### Find users by any valie: name, email, address, email
-```"show", "find" {part or full value to search}```
+#### Find users by any value: name, email, address, email
+```"show" | "find" {part or full value to search}```
 
 #### Show all users list
 ```all | contacts-list```
@@ -107,7 +101,7 @@ To start the bot, use the following command:
 ```show-birthday {user_name}```
 
 #### Show upcoming users birthdays related days ahead 
-```birthdays```
+```upcoming-birthdays```
 
 ``F.E. if today 13.08 -- (birthdays 5) return users birthdays list 13.08-18.08 dates in format '13.08': 'foo, bar', '14.08': 'user_3'``
 

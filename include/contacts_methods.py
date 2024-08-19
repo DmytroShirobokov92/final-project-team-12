@@ -1,24 +1,34 @@
 
 from .address_book.address_book import AddressBook
 from .contacts import Record
+from collections.abc import Callable
+from .color_console.color_console import error_answer
+import re
 
 
-def input_error(func):
+def input_error(func: Callable) -> Callable:
     def wrapper(*args, **kwargs):
         try:
             return func(*args, **kwargs)
         except ValueError as e:
-            return str(e)
+            return error_answer(str(e))
         except IndexError:
-            return "Insufficient arguments provided."
+            return error_answer("Insufficient arguments provided.")
+        except TypeError as e:
+            error_message = str(e)
+            missing_args = re.findall(r"'(\w+)'", error_message)
+            if missing_args:
+                return error_answer(f"Please fill-in missing values - {', '.join(missing_args)}")
+            else:
+                error_answer(str(e))
         except Exception as e:
-            return str(e)
+            return error_answer(str(e))
 
     return wrapper
 
 
 @input_error
-def add_contact(name, phone, book: AddressBook):
+def add_contact(name: str, phone: str, book: AddressBook) -> str:
     record = book.find(name)
     message = "Contact updated."
     if record is None:
@@ -31,7 +41,7 @@ def add_contact(name, phone, book: AddressBook):
 
 
 @input_error
-def delete_contact(name, book: AddressBook):
+def delete_contact(name: str, book: AddressBook) -> str:
     if book.find(name):
         book.delete(name)
         return "Contact deleted."
@@ -39,7 +49,7 @@ def delete_contact(name, book: AddressBook):
 
 
 @input_error
-def change_phone(name, old_phone, new_phone, book: AddressBook):
+def change_phone(name: str, old_phone: str, new_phone: str, book: AddressBook) -> str:
     record = book.find(name)
     if record:
         record.edit_phone(old_phone, new_phone)
@@ -48,55 +58,55 @@ def change_phone(name, old_phone, new_phone, book: AddressBook):
 
 
 @input_error
-def show_phone(phone: int, book: AddressBook):
+def show_phone(phone: int, book: AddressBook) -> str:
     records = book.find_by_phone(phone)
     if len(records):
-        answers = []
+        result: list[str] = []
         for rec in records:
             phones = ', '.join(p.value for p in rec.phones)
-            answers.append(f"Name: {rec.name}, Phones: {phones}, ")
-        return ', '.join(answers)
+            result.append(f"Name: {rec.name}, Phones: {phones}, ")
+        return ', '.join(result)
     return "Contact not found."
 
 
 @input_error
-def show_address(address: str, book: AddressBook):
+def show_address(address: str, book: AddressBook) -> str:
     records = book.find_by_address(address)
     if len(records):
-        answers = []
+        result: list[str] = []
         for rec in records:
             phones = ', '.join(p.value for p in rec.phones)
-            answers.append(f"Name: {rec.name}, Phones: {phones}, ")
-        return ', '.join(answers)
+            result.append(f"Name: {rec.name}, Phones: {phones}, ")
+        return ', '.join(result)
     return "Contact not found."
 
 
 @input_error
-def show_email(email: str, book: AddressBook):
+def show_email(email: str, book: AddressBook) -> str:
     records = book.find_by_email(email)
     if len(records):
-        answers = []
+        result: list[str] = []
         for rec in records:
             phones = ', '.join(p.value for p in rec.phones)
-            answers.append(f"Name: {rec.name}, Phones: {phones}, ")
-        return ', '.join(answers)
+            result.append(f"Name: {rec.name}, Phones: {phones}, ")
+        return ', '.join(result)
     return "Contact not found."
 
 
 @input_error
-def show_name(name: str, book: AddressBook):
+def show_name(name: str, book: AddressBook) -> str:
     records = book.find_by_name(name)
     if len(records):
-        answers = []
+        result: list[str] = []
         for rec in records:
             phones = ', '.join(p.value for p in rec.phones)
-            answers.append(f"Name: {rec.name}, Phones: {phones}, ")
-        return ', '.join(answers)
+            result.append(f"Name: {rec.name}, Phones: {phones}, ")
+        return ', '.join(result)
     return "Contact not found."
 
 
 @input_error
-def show_any_matches(value: str, book: AddressBook):
+def show_any_matches(value: str, book: AddressBook) -> str:
     # records: list[Record] = []
     records_by_name = book.find_by_name(value)
     records_by_email = book.find_by_email(value)
@@ -107,23 +117,23 @@ def show_any_matches(value: str, book: AddressBook):
                                records_by_email + records_by_address + records_by_phone)
 
     if len(records):
-        answers = []
+        result: list[str] = []
         for rec in records:
             phones = ', '.join(p.value for p in rec.phones)
-            answers.append(f"Name: {rec.name}, Phones: {phones}, ")
-        return ', '.join(answers)
+            result.append(f"Name: {rec.name}, Phones: {phones}, ")
+        return ', '.join(result)
     return "Contact not found."
 
 
 @input_error
-def show_all_contacts(book: AddressBook):
+def show_all_contacts(book: AddressBook) -> str:
     if book.data:
         return '\n'.join(str(record) for record in book.data.values())
     return "Address book is empty."
 
 
 @input_error
-def add_birthday(name, birthday, book: AddressBook):
+def add_birthday(name: str, birthday, book: AddressBook) -> str:
     record = book.find(name)
     if record:
         record.add_birthday(birthday)
@@ -132,7 +142,7 @@ def add_birthday(name, birthday, book: AddressBook):
 
 
 @input_error
-def add_address(args, book: AddressBook):
+def add_address(args: list[str], book: AddressBook) -> str:
     name, city, street, house_number, *apartment = args
     apartment = apartment[0] if apartment else None
     record = book.find(name)
@@ -143,7 +153,7 @@ def add_address(args, book: AddressBook):
 
 
 @input_error
-def add_email(args, book: AddressBook):
+def add_email(args: list[str], book: AddressBook) -> str:
     name, email = args
     record = book.find(name)
 
@@ -154,12 +164,8 @@ def add_email(args, book: AddressBook):
     return f"Email '{email}' added to contact '{name}'."
 
 
-def parse_input(user_input):
-    return user_input.strip().split()
-
-
 @input_error
-def show_birthday(name, book: AddressBook):
+def show_birthday(name: str, book: AddressBook) -> str:
     record = book.find(name)
     if record:
         if record.birthday:
@@ -169,5 +175,5 @@ def show_birthday(name, book: AddressBook):
 
 
 @input_error
-def birthdays(args, book: AddressBook):
+def birthdays(book: AddressBook) -> str:
     return book.upcoming_birthdays()
