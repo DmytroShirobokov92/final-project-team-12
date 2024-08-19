@@ -1,5 +1,6 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
+from ..color_console.color_console import colored_input
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -9,7 +10,7 @@ if TYPE_CHECKING:
 def get_upcoming_birthdays(address_book: AddressBook) -> str:
     today = datetime.today().date()
 
-    days_ahead = int(input("Input number of days ahead: "))
+    days_ahead = int(colored_input("Input number of days ahead: "))
     end_date = today + timedelta(days=days_ahead)
 
     upcoming_birthdays: dict[str, str] = {}

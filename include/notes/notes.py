@@ -3,6 +3,7 @@ from collections import UserDict
 from include.address_book.address_book import AddressBook
 from include.contacts_methods import input_error
 import pickle
+from ..color_console.color_console import colored_input
 
 
 class NoteBook(UserDict[str, "NoteRecord"]):
@@ -13,7 +14,8 @@ class NoteBook(UserDict[str, "NoteRecord"]):
         return self.data.get(title)
 
     def delete(self) -> str:
-        title = input("Enter the title of the note to delete: ").strip()
+        title = colored_input(
+            "Enter the title of the note to delete: ").strip()
         if title in self.data:
             del self.data[title]
             return f"Note titled '{title}' has been deleted."
@@ -29,7 +31,7 @@ class NoteBook(UserDict[str, "NoteRecord"]):
         return all_notes
 
     def search_notes(self) -> str:
-        query = input(
+        query = colored_input(
             "Enter a keyword or sentence to search for a note: ").strip().lower()
 
         found_notes = [
@@ -60,8 +62,8 @@ class NoteRecord:
 
 @input_error
 def add_note(note_book: NoteBook) -> str:
-    title = input("Enter the note title: ")
-    body = input("Enter the note body: ")
+    title = colored_input("Enter the note title: ")
+    body = colored_input("Enter the note body: ")
 
     record = note_book.find(title)
     message = "Note updated."
